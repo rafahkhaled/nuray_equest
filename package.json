@@ -1,0 +1,12 @@
+{
+  "name": "nuray-equestrian",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Nuray Equestrian — static, zero-dependency website",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "serve": "node build.mjs && node serve.mjs",
+    "dev": "node serve.mjs"
+  }
+}

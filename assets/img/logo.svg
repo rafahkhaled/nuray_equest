@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 150" role="img" aria-label="Nuray Equestrian">
+<!-- PLACEHOLDER logo: replace this file with the final logo SVG -->
+<path d="M82 66a28 28 0 1 1 56 0v24c0 8 4 12 8 14M82 66v24c0 8-4 12-8 14" fill="none" stroke="#A86644" stroke-width="3.2" stroke-linecap="round"/>
+<path d="M92 84V56l36 28V56" fill="none" stroke="#A86644" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="110" y="124" text-anchor="middle" font-family="'Playfair Display',Georgia,serif" font-size="30" font-weight="500" fill="#1a110d" letter-spacing="1">NURAY</text>
+<text x="110" y="143" text-anchor="middle" font-family="'Jost',Arial,sans-serif" font-size="10.5" fill="#1a110d" letter-spacing="5">EQUESTRIAN</text>
+</svg>
