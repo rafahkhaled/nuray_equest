@@ -1,8 +1,9 @@
 import fs from 'node:fs';
 import cfg from './config.mjs';
 
-const b = p => cfg.base.replace(/\/$/, '') + p;
-export const href = slug => b(slug === '' ? '/' : `/${slug}/`);
+export const PREVIEW = !!process.env.PREVIEW; // flat, relative-link build for sandboxed hosting
+const b = p => (PREVIEW ? p.slice(1) : cfg.base.replace(/\/$/, '') + p);
+export const href = slug => (PREVIEW ? (slug === '' ? 'home.html' : `${slug}.html`) : b(slug === '' ? '/' : `/${slug}/`));
 
 // Photo helper: drop assets/img/photos/<name>.(webp|jpg|jpeg|png) and it is used automatically.
 const exts = ['webp', 'jpg', 'jpeg', 'png', 'avif'];
