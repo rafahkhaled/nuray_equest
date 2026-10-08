@@ -49,10 +49,10 @@
   });
 
   // Gallery filter + lightbox
-  const fl = $$('.filters button'), items = $$('.gal a');
+  const fl = $$('.filters button'), items = $$('.gal a'), filt = $$('.gal a, .shop .prod');
   fl.forEach(b => b.addEventListener('click', () => {
     fl.forEach(x => x.setAttribute('aria-pressed', x === b));
-    items.forEach(a => a.hidden = b.dataset.f !== 'all' && a.dataset.cat !== b.dataset.f);
+    filt.forEach(a => a.hidden = b.dataset.f !== 'all' && a.dataset.cat !== b.dataset.f);
   }));
   const lb = $('.lb');
   const closeLb = () => lb && lb.classList.remove('on');

@@ -1,5 +1,6 @@
 import cfg from './config.mjs';
 import { pic, bg, btn, link, href } from './layout.mjs';
+import products, { categories } from './products.mjs';
 
 // ---------- building blocks ----------
 const hero = ({ img, tone, eyebrow, h1, lead, ctas = '', full = false, crumb }) => `
@@ -48,6 +49,8 @@ const FAQ_ALL = [
   ['What about the summer heat?', 'Riding hours move to early morning and evening during the hotter months, and our arena and stables are designed with shade and cooling in mind.'],
 ];
 
+const prod = (p, k = 0) => `<div class="prod rv" data-cat="${p.cat}" style="--d:${(k % 4) * .06}s">${pic('product-' + p.id, p.name, { tone: 't1', cls: '', label: p.cat })}<small>${p.cat}</small><h3>${p.name}</h3><p class="p">${p.price}</p><a class="link" target="_blank" rel="noopener" href="https://wa.me/${cfg.whatsapp}?text=${encodeURIComponent('Hello, I am interested in: ' + p.name)}">Enquire</a></div>`;
+
 // ---------- pages ----------
 export const pages = [];
 const add = (slug, o) => pages.push({ slug, ...o });
@@ -55,7 +58,7 @@ const add = (slug, o) => pages.push({ slug, ...o });
 add('', {
   title: '', desc: 'Nuray Equestrian — elegant riding lessons, training, livery and events in the UAE. A light on every ride.', hero: true,
   body: `
-${hero({ full: true, img: 'hero', tone: 't4', eyebrow: 'Equestrian Club · United Arab Emirates', h1: 'A light on <em>every</em> ride.', lead: 'Graceful riding, thoughtful horsemanship and a community built around the horse — for beginners, families and competitors alike.', ctas: btn('Book a Ride', href('contact') + '#book', 'light') + btn('Discover Lessons', href('lessons'), 'ghost on-dark') })}
+${hero({ full: true, img: 'hero', tone: 't4', eyebrow: 'Equestrian Club · United Arab Emirates', h1: 'A light on <em>every</em> ride.', lead: 'Riding lessons, training, livery and equestrian essentials.', ctas: btn('Book a Ride', href('contact') + '#book', 'light') + btn('Discover Lessons', href('lessons'), 'ghost on-dark') })}
 
 <section class="section">
   <div class="wrap split">
@@ -84,17 +87,6 @@ ${hero({ full: true, img: 'hero', tone: 't4', eyebrow: 'Equestrian Club · Unite
   </div>
 </section>
 
-<section class="section bg-brown">
-  <div class="wrap">
-    <div class="stats">
-      <div class="rv"><b data-count="12" data-suffix="+">12+</b><span>Years of riding</span></div>
-      <div class="rv"><b data-count="40" data-suffix="+">40+</b><span>Schooled horses</span></div>
-      <div class="rv"><b data-count="1500" data-suffix="+">1500+</b><span>Riders taught</span></div>
-      <div class="rv"><b data-count="25" data-suffix="+">25+</b><span>Show podiums</span></div>
-    </div>
-  </div>
-</section>
-
 <section class="section">
   <div class="wrap">
     <div class="head center rv"><span class="eyebrow">The Nuray difference</span><h2>Considered in every detail.</h2></div>
@@ -116,16 +108,10 @@ ${hero({ full: true, img: 'hero', tone: 't4', eyebrow: 'Equestrian Club · Unite
   <div class="wrap center" style="margin-top:2.5rem">${link('See the gallery', href('gallery'))}</div>
 </section>
 
-<section class="section bg-brown">
+<section class="section">
   <div class="wrap">
-    <div class="quote">
-      <div class="slides">
-        <div class="slide"><blockquote>“My daughter went from nervous to fearless in a few months. The coaches are patient, warm and truly exceptional.”</blockquote><cite>Parent of a young rider</cite></div>
-        <div class="slide"><blockquote>“The most beautiful, calm and professional stable I’ve ridden at. Every detail is considered.”</blockquote><cite>Adult rider</cite></div>
-        <div class="slide"><blockquote>“My horse has never looked better. The care and communication are outstanding.”</blockquote><cite>Livery client</cite></div>
-      </div>
-      <div class="dots"></div>
-    </div>
+    <div class="head-row"><div class="head rv"><span class="eyebrow">Shop</span><h2>Riding essentials.</h2></div>${link('View all products', href('shop'))}</div>
+    <div class="grid g4">${products.slice(0, 4).map(prod).join('')}</div>
   </div>
 </section>
 ${cta()}`,
@@ -228,6 +214,18 @@ const horseList = [
   ['Noor', 'Arabian stallion · 8 yrs', 'Spirited, athletic and beautifully schooled.'],
   ['Khalid', 'Cob · 16 yrs', 'Rock-solid, kind and unflappable.'],
 ];
+add('shop', {
+  title: 'Shop', desc: 'Equestrian essentials — helmets, riding wear, boots and tack — from Nuray Equestrian.',
+  body: `
+${hero({ img: 'shop-hero', tone: 't4', crumb: 'Shop', eyebrow: 'Shop', h1: 'Equestrian essentials.', lead: 'Carefully selected riding wear, protection and tack. Message us to order.' })}
+<section class="section"><div class="wrap">
+  <p class="note rv">Sample products — replace with your catalogue in <code>src/products.mjs</code>.</p>
+  <div class="filters" role="group" aria-label="Filter products"><button data-f="all" aria-pressed="true">All</button>${categories.map(c => `<button data-f="${c}" aria-pressed="false">${c}</button>`).join('')}</div>
+  <div class="grid g4 shop">${products.map(prod).join('')}</div>
+</div></section>
+${cta('Can’t find what you need?', 'We can source specific brands and sizes — just ask.')}`,
+});
+
 add('horses', {
   title: 'Our Horses', desc: 'Meet the horses and ponies of Nuray Equestrian.',
   body: `

@@ -28,9 +28,9 @@ export const link = (text, to) => `<a class="link" href="${to}">${text}${arrow}<
 
 export const nav = [
   ['about', 'About'], ['lessons', 'Lessons'], ['training', 'Training'], ['boarding', 'Boarding'],
-  ['horses', 'Horses'], ['events', 'Events'], ['gallery', 'Gallery'], ['contact', 'Contact'],
+  ['shop', 'Shop'], ['horses', 'Horses'], ['events', 'Events'], ['contact', 'Contact'],
 ];
-const footerExplore = [['about', 'Our Story'], ['team', 'The Team'], ['horses', 'Our Horses'], ['gallery', 'Gallery'], ['faq', 'FAQ']];
+const footerExplore = [['about', 'Our Story'], ['team', 'The Team'], ['horses', 'Our Horses'], ['shop', 'Shop'], ['gallery', 'Gallery'], ['faq', 'FAQ']];
 const footerRide = [['lessons', 'Riding Lessons'], ['training', 'Training & Coaching'], ['boarding', 'Livery & Boarding'], ['events', 'Camps & Events'], ['contact', 'Book a Visit']];
 
 const wa = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.6-4.8A8.5 8.5 0 1 1 8 19.6z"/><path d="M9 9.5c0 3 2.500 5.500 5.500 5.500l1.200-1.300-2-1-.9.8a4 4 0 0 1-2-2l.8-.9-1-2z" fill="currentColor" stroke="none"/></svg>';
@@ -65,7 +65,7 @@ export function layout({ slug, title, desc, body, hero = false, schema }) {
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="hdr${hero ? '' : ' always'}">
+<header class="hdr${(hero || !['privacy','404'].includes(slug)) ? '' : ' always'}">
   <div class="wrap">
     <a class="logo" href="${b('/')}" aria-label="${cfg.name} — home">
       <img class="light" src="${b('/assets/img/logo-light.svg')}" alt="${cfg.name}" width="88" height="60">
